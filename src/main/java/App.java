@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
+import java.math.BigInteger;
 
 class App {
     public static void main(String args[]) throws IOException {
@@ -50,15 +51,6 @@ class App {
         System.out.println("the value of public key = " + publicKey);
 
 
-
-
-
-
-
-
-
-
-
         //Wylicamy wartosc klucza prywatnego
         for (i = 0; i <= n; i++) {
             int value = 1 + (i * z);
@@ -86,8 +78,7 @@ class App {
         // converting float value of c to BigInteger
         BigInteger C = BigDecimal.valueOf(c).toBigInteger();
         msgback = (C.pow(privateKey)).mod(N);
-        System.out.println("Decrypted message is : "
-                + msgback);
+        System.out.println("Decrypted message is : " + msgback);
     }
 
     static int gcd(int publicKey, int z)
