@@ -41,6 +41,7 @@ class App {
             // e jest to klucz publiczny
             if (gcd(publicKey, z) == 1) {
                 listOfPublicKeys.add(publicKey);
+                System.out.println(publicKey); 
                 length ++;
             }
         }
