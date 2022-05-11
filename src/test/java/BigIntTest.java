@@ -80,19 +80,17 @@ public class BigIntTest {
   @Test
   public void addTest() {
     bigInt.setValue("123");
-    BigInt bi = new BigInt("11");
-    assertEquals("134", bigInt.add(bi));
+    assertEquals("134", bigInt.add("11"));
 
     String expectedValue = "99247780936";
     bigInt.setValue("7778526");
-    bi.setValue("99240002410");
+    BigInt bi = new BigInt("99240002410");
     assertEquals(expectedValue, bigInt.add(bi));
     
 
     expectedValue = "10";
     bigInt.setValue("9");
-    bi.setValue("1");
-    assertEquals(expectedValue, bigInt.add(bi));
+    assertEquals(expectedValue, bigInt.add("1"));
   }
 
   @Test
@@ -153,5 +151,20 @@ public class BigIntTest {
     bigInt.setValue("222222222222222222222222221516541354164321641654983516568459865649451654895649565"); 
     bi.setValue("98989846546515649846548446549847984654654316546846468484984649849849849484649");
     assertNotNull(bigInt.mod(bi));
+  }
+
+  @Test
+  public void divideByIntTest() {
+    String expectedValue = "1111111111111";
+    assertEquals(expectedValue, BigInt.divideByInt("2222222222222", 2));
+  }
+
+  @Test
+  public void divideTest() {
+    BigInt bi = new BigInt("100");
+    
+    // assertEquals("5", bi.divide("20"));
+    // bi.setValue("100");
+    // assertEquals("20", bi.divide("5"));
   }
 }
