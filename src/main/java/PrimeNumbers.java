@@ -1,9 +1,13 @@
 package main;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 public class PrimeNumbers {
 
 
-    public static boolean is_prime(BigInt n){
+    public static boolean isPrime(BigInt n){
         if (n.compareTo(new BigInt("2")) == 0 || n.compareTo(new BigInt("3")) == 0 ) {
             return true;
         }
@@ -23,5 +27,42 @@ public class PrimeNumbers {
         }
 
         return true;
+    }
+    public static BigInt randomPrimeNumber(BigInt n){
+        boolean t;
+
+
+        BigInt length = new BigInt("0");
+        BigInt i = new BigInt("2");
+        BigInt one = new BigInt("1");
+        BigInt primeNumber = new BigInt("2");
+        BigInt primeNumberCopy = new BigInt("2");
+
+        List<BigInt> listOfPrimeNumbers = new ArrayList<>();
+        while(length.compareTo(n) == -1) {
+            t = true;
+            for(; i.compareTo(primeNumber) == -1; i.add(one)){
+                if(primeNumberCopy.mod(i) == "0")
+                {
+                    t = false;
+                    break;
+                }
+            }
+
+
+            if(t)
+            {
+                listOfPrimeNumbers.add(primeNumber);
+                length.add(one);
+            }
+            primeNumber.add(one);
+            primeNumberCopy.setValue(primeNumber.getStringVal());
+        }
+        Random random = new Random();
+        int position = 3;
+        BigInt chosenPrimeNumber = listOfPrimeNumbers.get(position);
+
+
+        return chosenPrimeNumber;
     }
 }
