@@ -13,6 +13,12 @@ public class PrimeNumbersTest {
     @Test
     public void checkPrimeNumberTest() {
         BigInt x = new BigInt("7");
-        assertTrue(PrimeNumbers.is_prime(x));
+        assertTrue(PrimeNumbers.isPrime(x));
+    }
+    @Test
+    public void checkPrimeNumberGeneratorTest() {
+        BigInt x = new BigInt("123536999");
+        BigInt randomNumber = PrimeNumbers.randomPrimeNumber(x);
+        assertTrue(PrimeNumbers.isPrime(randomNumber));
     }
 }
