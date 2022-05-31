@@ -1,5 +1,6 @@
 package Test;
 
+import main.BigInt;
 import org.junit.jupiter.api.Test;
 
 import main.RSA;
@@ -9,18 +10,19 @@ import static org.junit.jupiter.api.Assertions.*;
 public class RSATest {
     @Test
     public void constructorTest() {
-        String msg = "Hello there!";
-        RSA rsa = new RSA(msg);
+        BigInt bi = new BigInt("12345648135164351646");
+        RSA rsa = new RSA(bi);
+
+        System.out.println("Pub: " + rsa.getPublicKey().get());
+        System.out.println("Priv: " + rsa.getPrivateKey().get());
+
         rsa.encode();
         rsa.decode();
 
-        assertEquals(msg, rsa.getDecodedMsg());
+        System.out.println("N: " + rsa.getN().get());
+        System.out.println("En: " + rsa.getEncryptedNumber().get());
+        System.out.println("De: " + rsa.getDecryptedNumber().get());
 
-        RSA rsa2 = new RSA("dd");
-    }
-
-    @Test
-    public void byteArrayTest() {
-        byte[] bytes = {100, 80, 11, 22, 36, 66, 101};
+        assertEquals(bi.get(), rsa.getDecryptedNumber().get());
     }
 }

@@ -1,8 +1,9 @@
 package main;
 
+import java.io.Serializable;
 import java.math.BigInteger;
 
-public class BigInt implements Comparable<BigInt> {
+public class BigInt implements Comparable<BigInt>, Serializable {
     private int[] mag;
 
     public BigInt(String val) {
@@ -33,6 +34,14 @@ public class BigInt implements Comparable<BigInt> {
 
 
         this.mag = magnitude;
+    }
+
+    public BigInt(int[] bytes) {
+        if (bytes.length == 0) {
+            throw new NumberFormatException("Zero length array");
+        }
+
+        this.mag = bytes;
     }
 
     public static BigInt gcd(BigInt a, BigInt b) {
@@ -150,7 +159,7 @@ public class BigInt implements Comparable<BigInt> {
         }
 
         if (i == -1) {
-            this.set("0");
+            return new BigInt("0");
         }
 
         int[] result = new int[i + 1];
@@ -204,6 +213,20 @@ public class BigInt implements Comparable<BigInt> {
         return new BigInt(currentMod.toString());
     }
 
+    public BigInt modInv(BigInt mod) {
+//        try {
+//            Thread.sleep(4000);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+
+        BigInteger inv = new BigInteger(this.get());
+        BigInteger modular = new BigInteger(mod.get());
+
+        BigInteger res = inv.modInverse(modular);
+        return new BigInt(res.toString());
+    }
+
     public BigInt divide(String val) {
         return this.divide(new BigInt(val));
     }
@@ -246,8 +269,8 @@ public class BigInt implements Comparable<BigInt> {
     }
 
     public void set(int[] val) {
-        // powinny być checki
-        this.mag = val;
+        BigInt bi = new BigInt(val);
+        this.mag = bi.getBytes();
     }
 
     @Override
